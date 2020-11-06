@@ -24,7 +24,7 @@ BungeeInventory furnaceInventory = new BungeeInventory("§7Multi Server Furnace"
 ItemStack lobbyItem = new ItemStack("CLOCK", "§6Lobby", "§7Click to be send to the Lobby");
 ItemStack pvpItem = new ItemStack("DIAMOND_SWORD", "§bPvP");
 
-inventory.setItem(13, pvpItem);
+inventory.addItem(pvpItem);
 inventory.setItem(15, lobbyItem);
 ```
 
