@@ -20,7 +20,6 @@ public enum InventoryType {
 	DROPPER(9),
 	FURNACE(3),
 	WORKBENCH(10),
-	CRAFTING(5),
 	ENCHANTING(2),
 	BREWING(5),
 	ANVIL(3),
