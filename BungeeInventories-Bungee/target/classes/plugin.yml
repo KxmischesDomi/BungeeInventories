@@ -1,6 +1,0 @@
-name: BungeeInventories
-author: KxmischesDomi
-website: coding-area.net
-version: 1.0
-main: net.codingarea.bungeeinventories.BungeeInventoriesPlugin
-description: Library to send Custom Inventories to players
