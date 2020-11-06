@@ -1,7 +1,0 @@
-name: BungeeInventories
-description: Handler for the BungeeInventories Bungeecord Plugin
-main: net.codingarea.bungeeinventories.BungeeInventoriesPlugin
-version: 1.0
-website: coding-area.net
-author: KxmischesDomi
-api-version: 1.13

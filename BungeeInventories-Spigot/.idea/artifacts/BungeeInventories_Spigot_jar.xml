@@ -1,9 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" name="BungeeInventories-Spigot:jar">
-    <output-path>$PROJECT_DIR$/../../Plugins/Multi</output-path>
-    <root id="archive" name="BungeeInventories-Spigot.jar">
-      <element id="module-output" name="BungeeInventories-Spigot" />
-      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/io/github/bananapuncher714/NBTEditor/7.16/NBTEditor-7.16.jar" path-in-jar="/" />
-    </root>
-  </artifact>
-</component>
