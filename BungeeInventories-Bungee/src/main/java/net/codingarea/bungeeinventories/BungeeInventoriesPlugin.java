@@ -24,7 +24,7 @@ public class BungeeInventoriesPlugin extends Plugin {
 
 	private static BungeeInventoriesPlugin instance;
 
-	private BungeeInventoryManager manager = new BungeeInventoryManager();;
+	private final BungeeInventoryManager manager = new BungeeInventoryManager();;
 
 	@Override
 	public void onLoad() {
@@ -32,7 +32,7 @@ public class BungeeInventoriesPlugin extends Plugin {
 
 		getProxy().registerChannel("codingarea:bungeeinventories");
 
-		getProxy().getPluginManager().registerCommand(this, new TestCommand());
+		//getProxy().getPluginManager().registerCommand(this, new TestCommand());
 	}
 
 	@Nonnull
