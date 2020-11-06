@@ -2,6 +2,7 @@ package net.codingarea.bungeeinventories.manager;
 
 import com.google.common.io.ByteArrayDataOutput;
 import com.google.common.io.ByteStreams;
+import net.codingarea.bungeeinventories.utils.BiFactory;
 import net.codingarea.bungeeinventories.utils.BungeeInventory;
 import net.codingarea.bungeeinventories.utils.Factory;
 import net.codingarea.bungeeinventories.utils.OpenInventoryType;
@@ -25,19 +26,19 @@ public class BungeeInventoryManager {
 
 	private static BungeeInventoryManager instance;
 
-	private Factory<ProxiedPlayer, Boolean> maySendInventory;
+	private BiFactory<ProxiedPlayer, BungeeInventory, Boolean> maySendInventory;
 
 	public BungeeInventoryManager() {
 		instance = this;
-		setMaySendInventory(player -> true);
+		setMaySendInventory((player, inventory) -> true);
 	}
 
-	public void setMaySendInventory(final @Nonnull Factory<ProxiedPlayer, Boolean> maySendInventory) {
+	public void setMaySendInventory(BiFactory<ProxiedPlayer, BungeeInventory, Boolean> maySendInventory) {
 		this.maySendInventory = maySendInventory;
 	}
 
 	public void sendInventory(final @Nonnull ProxiedPlayer player, final @Nonnull BungeeInventory inventory, final @Nonnull OpenInventoryType openInventoryType) {
-		if (!maySendInventory.accept(player)) return;
+		if (!maySendInventory.accept(player, inventory)) return;
 
 		ByteArrayDataOutput out = ByteStreams.newDataOutput();
 		out.writeUTF(player.getName());
@@ -53,7 +54,7 @@ public class BungeeInventoryManager {
 
 	@Nonnull
 	@CheckReturnValue
-	protected Factory<ProxiedPlayer, Boolean> getMaySendInventory() {
+	public BiFactory<ProxiedPlayer, BungeeInventory, Boolean> getMaySendInventory() {
 		return maySendInventory;
 	}
 
