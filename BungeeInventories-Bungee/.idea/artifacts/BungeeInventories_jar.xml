@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="BungeeInventories:jar">
+    <output-path>$PROJECT_DIR$/../../Plugins/Proxy</output-path>
+    <root id="archive" name="BungeeInventories.jar">
+      <element id="module-output" name="BungeeInventories" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/google/code/findbugs/jsr305/3.0.2/jsr305-3.0.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/jetbrains/annotations/16.0.1/annotations-16.0.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/json/json/20090211/json-20090211.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
