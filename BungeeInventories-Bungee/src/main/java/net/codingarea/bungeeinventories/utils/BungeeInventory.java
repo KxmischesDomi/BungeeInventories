@@ -25,19 +25,19 @@ public class BungeeInventory {
 
 	private String title;
 	private int size;
-	private final InventoryType type;
+	private String type;
 	private final Map<Integer, ItemStack> contents = new HashMap<>();
 
 	public BungeeInventory(final @Nonnull String title, final int size) {
 		this.title = title;
 		this.size = size;
-		this.type = InventoryType.CHEST;
+		this.type = InventoryType.CHEST.name();
 	}
 
 	public BungeeInventory(final @Nonnull String title, final @Nonnull InventoryType type) {
 		this.title = title;
 		this.size = type.getDefaultSize();
-		this.type = type;
+		this.type = type.name();
 	}
 
 	public BungeeInventory setTitle(final @Nonnull String title) {
@@ -66,6 +66,14 @@ public class BungeeInventory {
 		return this;
 	}
 
+	public void setType(final @Nonnull InventoryType type) {
+		this.type = type.name();
+	}
+
+	public void setType(final @Nonnull String type) {
+		this.type = type;
+	}
+
 	@Nullable
 	@CheckReturnValue
 	private Integer getFirstEmptySlot() {
@@ -88,7 +96,7 @@ public class BungeeInventory {
 
 	@Nonnull
 	@CheckReturnValue
-	public InventoryType getType() {
+	public String getType() {
 		return type;
 	}
 
@@ -110,8 +118,7 @@ public class BungeeInventory {
 		try {
 			object.put("title", title);
 			object.put("size", size);
-			object.put("type", type.name());
-			object.put("type", type.name());
+			object.put("type", type);
 
 			JSONArray itemStacks = new JSONArray();
 			for (int i = 0; i < size; i++) {
