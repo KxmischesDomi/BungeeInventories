@@ -1,9 +1,6 @@
 package net.codingarea.bungeeinventories;
 
-import net.codingarea.bungeeinventories.commands.TestCommand;
 import net.codingarea.bungeeinventories.manager.BungeeInventoryManager;
-import net.codingarea.bungeeinventories.utils.BungeeInventory;
-import net.codingarea.bungeeinventories.utils.ItemStack;
 import net.md_5.bungee.api.plugin.Plugin;
 
 import javax.annotation.CheckReturnValue;
@@ -30,9 +27,7 @@ public class BungeeInventoriesPlugin extends Plugin {
 	public void onLoad() {
 		instance = this;
 
-		getProxy().registerChannel("codingarea:bungeeinventories");
-
-		//getProxy().getPluginManager().registerCommand(this, new TestCommand());
+		getProxy().registerChannel("bungee:invs");
 	}
 
 	@Nonnull
