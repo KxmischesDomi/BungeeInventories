@@ -1,6 +1,7 @@
 package net.codingarea.bungeeinventories.manager;
 
 import io.github.bananapuncher714.nbteditor.NBTEditor;
+import net.codingarea.bungeeinventories.utils.BiFactory;
 import net.codingarea.bungeeinventories.utils.Factory;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -34,11 +35,11 @@ public class BungeeInventoriesManager {
 
 	private static BungeeInventoriesManager instance;
 
-	private Factory<Player, Boolean> mayOpenInventory;
+	private BiFactory<Player, Inventory, Boolean> mayOpenInventory;
 
 	public BungeeInventoriesManager() {
 		instance = this;
-		setMayOpenInventory(player -> true);
+		setMayOpenInventory((player, inventory) -> true);
 	}
 
 	@Nullable
@@ -73,7 +74,6 @@ public class BungeeInventoriesManager {
 			} catch (Throwable throwable) {
 				throwable.printStackTrace();
 			}
-
 
 			return inventory;
 		} catch (Throwable throwable) {
@@ -112,13 +112,15 @@ public class BungeeInventoriesManager {
 		return null;
 	}
 
-	public void setMayOpenInventory(final @Nonnull Factory<Player, Boolean> mayOpenInventory) {
+	@Nonnull
+	@CheckReturnValue
+	public void setMayOpenInventory(BiFactory<Player, Inventory, Boolean> mayOpenInventory) {
 		this.mayOpenInventory = mayOpenInventory;
 	}
 
 	@Nonnull
 	@CheckReturnValue
-	public Factory<Player, Boolean> getMayOpenInventory() {
+	public BiFactory<Player, Inventory, Boolean> getMayOpenInventory() {
 		return mayOpenInventory;
 	}
 
