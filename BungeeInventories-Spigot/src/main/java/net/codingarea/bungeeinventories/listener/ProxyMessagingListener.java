@@ -38,13 +38,11 @@ public class ProxyMessagingListener implements PluginMessageListener {
 			if (player == null) return;
 
 			OpenInventoryType type = OpenInventoryType.valueOf(in.readUTF());
-			System.out.println(type);
 			if (type == OpenInventoryType.ONLY_WHEN_INVENTORY_CLOSED
 					&& (player.getOpenInventory() != null || player.getOpenInventory().getTopInventory() != null)) return;
 
 			JSONParser parser = new JSONParser();
 			String jsonString = in.readUTF();
-			System.out.println(jsonString);
 			JSONObject jsonObject = (JSONObject) parser.parse(jsonString);
 			Inventory inventory = manager.generateInventory(jsonObject);
 
