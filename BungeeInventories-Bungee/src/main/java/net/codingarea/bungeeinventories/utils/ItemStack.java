@@ -1,5 +1,6 @@
 package net.codingarea.bungeeinventories.utils;
 
+import com.google.common.collect.Lists;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -30,23 +31,23 @@ public class ItemStack {
 	private int amount = 1;
 	private List<String> lore = new ArrayList<>();
 	private String[] itemFlags = {};
-	private Enchantment[] enchantments;
+	private Enchantment[] enchantments = {};
 	private final Map<String, Object> attributes = new HashMap<>();
 	private short damage = 0;
 	private boolean unbreakable = false;
 
 	public ItemStack(final @Nonnull String material) {
-		this.material = material;
+		this.material = material.toUpperCase();
 		this.displayName = Utils.getEnumName(material);
 	}
 
 	public ItemStack(final @Nonnull String material, final @Nonnull String displayName) {
-		this.material = material;
+		this.material = material.toUpperCase();
 		this.displayName = displayName;
 	}
 
 	public ItemStack(final @Nonnull String material, final @Nonnull String displayName, final @Nonnull String... lore) {
-		this.material = material;
+		this.material = material.toUpperCase();
 		this.displayName = displayName;
 		this.lore = new ArrayList<>(Arrays.asList(lore));
 	}
@@ -62,7 +63,7 @@ public class ItemStack {
 	}
 
 	public ItemStack setMaterial(final @Nonnull String material) {
-		this.material = material;
+		this.material = material.toUpperCase();
 		return this;
 	}
 
@@ -96,12 +97,35 @@ public class ItemStack {
 	}
 
 	public ItemStack addEnchantment(final @Nonnull Enchantment enchantment) {
-		enchantments = Utils.addElememtToArray(enchantments, enchantment);
+		Iterator<Enchantment> e = Arrays.stream(enchantments).iterator();
+
+		e.forEachRemaining(ench -> {
+			if (ench.getEnchantment().equals(enchantment.getEnchantment())) {
+				e.remove();
+			}
+		});
+
+		List<Enchantment> enchantments = Lists.newArrayList(e);
+		enchantments.add(enchantment);
+		this.enchantments = Utils.toArray(enchantments);
 		return this;
 	}
 
-	public ItemStack removeEnchantment(final @Nonnull Enchantment enchantment) {
-		enchantments = Utils.removeElememtFromArray(enchantments, enchantment);
+	public ItemStack addEnchantment(final @Nonnull String enchantment, final int level) {
+		addEnchantment(new Enchantment(enchantment, level));
+		return this;
+	}
+
+	public ItemStack removeEnchantment(final @Nonnull String enchantment) {
+		Iterator<Enchantment> e = Arrays.stream(enchantments).iterator();
+
+		e.forEachRemaining(ench -> {
+			if (ench.getEnchantment().equals(enchantment)) {
+				e.remove();
+			}
+		});
+
+		enchantments = Utils.toArray(Lists.newArrayList(e));
 		return this;
 	}
 
