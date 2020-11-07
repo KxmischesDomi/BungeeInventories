@@ -23,7 +23,7 @@ public class Enchantment {
 	private int level = 1;
 
 	public Enchantment(final @Nonnull String enchantment, final @Nonnull int level) {
-		this.enchantment = enchantment;
+		this.enchantment = enchantment.toUpperCase();
 		this.level = level;
 	}
 
