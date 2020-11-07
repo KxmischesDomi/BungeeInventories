@@ -10,7 +10,6 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.plugin.messaging.PluginMessageListener;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 
 /**
  * ⠀
@@ -30,7 +29,7 @@ public class ProxyMessagingListener implements PluginMessageListener {
 
 	@Override
 	public void onPluginMessageReceived(String channel, Player unused, byte[] data) {
-		if (!channel.equals("codingarea:bungeeinventories")) return;
+		if (!channel.equals("bungee:invs")) return;
 
 		try {
 			ByteArrayDataInput in = ByteStreams.newDataInput(data);
@@ -43,16 +42,19 @@ public class ProxyMessagingListener implements PluginMessageListener {
 			if (type == OpenInventoryType.ONLY_WHEN_INVENTORY_CLOSED
 					&& (player.getOpenInventory() != null || player.getOpenInventory().getTopInventory() != null)) return;
 
-			if (!manager.getMayOpenInventory().accept(player)) return;
-
 			JSONParser parser = new JSONParser();
 			String jsonString = in.readUTF();
 			System.out.println(jsonString);
 			JSONObject jsonObject = (JSONObject) parser.parse(jsonString);
 			Inventory inventory = manager.generateInventory(jsonObject);
+
+			if (!manager.getMayOpenInventory().accept(player, inventory)) return;
+
 			player.openInventory(inventory);
 		} catch (Throwable e) {
 			e.printStackTrace();
 		}
+
 	}
+
 }
