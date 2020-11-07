@@ -34,7 +34,7 @@ public class BungeeInventoriesPlugin extends JavaPlugin {
 	}
 
 	private void registerListener() {
-		getServer().getMessenger().registerIncomingPluginChannel(this, "codingarea:bungeeinventories", new ProxyMessagingListener());
+		getServer().getMessenger().registerIncomingPluginChannel(this, "bungee:invs", new ProxyMessagingListener());
 	}
 
 	@Nonnull
