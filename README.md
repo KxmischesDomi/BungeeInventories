@@ -3,7 +3,9 @@
 ## A simple API to send Inventories to Spigot Servers and let players open them. 
 
 ### Setup
-Download the newest version of the API's and import the Bungee api into a bungeecord plugin and the Spigot api into a spigot plugin
+[Download](https://github.com/KxmischesDomi/BungeeInventories/releases) the newest version of the API's and import them into you're plugins
+You don't have to make a Spigot Plugin with the Library, only if you want to change something described in the following spigot documentation
+Don't export the Libraries, just put them on your servers as plugins.
 
 ### Development
 #### Bungeecord
@@ -49,7 +51,7 @@ With overwriting this <code>Factory</code> you can block sending specified inven
 This <code>Factory</code> returns a <code>boolean</code>.
 
 ```java
-BungeeInventoryManager.getInstance().setMaySendInventory(player -> {
+BungeeInventoryManager.getInstance().setMaySendInventory((player, inventory) -> {
 	if (...) {
 		// Inventory will be sent to Spigot Server
 		return true;
@@ -67,7 +69,7 @@ With overwriting this <code>Factory</code> you can block sending specified inven
 This <code>Factory</code> returns a <code>boolean</code>.
 
 ```java
-BungeeInventoryManager.getInstance().setMayOpenInventory(player -> {
+BungeeInventoryManager.getInstance().setMayOpenInventory((player, inventory) -> {
 	if (...) {
 		// Inventory will be opened
 		return true;
