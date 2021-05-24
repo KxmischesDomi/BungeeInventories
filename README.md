@@ -1,4 +1,4 @@
-# BungeeInventories [Archive]
+# BungeeInventories [Archived]
  
 ## A simple API to send Inventories to Spigot Servers and let players open them. 
 
